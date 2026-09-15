@@ -1,23 +1,25 @@
 import { StyleSheet, Text, Card, View, Pressable } from 'react-native';
 import {SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
+import { useState } from 'react';
 
 
    export default function App() {
+    const [pontos, setPontos] = useState(0);
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
         <View style={styles.tela}>
         <Text style={styles.texto}>Clique para adicionar um ponto ou subtrair!</Text>
         <View style={styles.areadebotao}>
-        <Pressable style={styles.botao1}>
+        <Pressable style={styles.botao1}onPress={() => setPontos(pontos + 1)}>
         <Text style={styles.textodobotao}>+1</Text>
         </Pressable>
-        <Pressable style={styles.botao2}>
+        <Pressable style={styles.botao2}onPress={() => setPontos(pontos - 1)}>
         <Text style={styles.textodobotao}>-1</Text>
         </Pressable>
         </View>
         <View style={styles.resultado}>
-        
+        {pontos > 0 && <Text style={styles.textoresultado}>Pontos: {pontos}</Text>}
         </View>
         </View>
       </SafeAreaView>
@@ -86,7 +88,12 @@ const styles = StyleSheet.create({
     color:'#ffffff'
   },
 
-  resultado:{
+  textoresultado:{
+    marginTop: 30,
+    fontSize: 20,
+    color:'#ffffff'
+  },
 
+  resultado:{
   },
 });
